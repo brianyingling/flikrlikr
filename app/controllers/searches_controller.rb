@@ -40,25 +40,32 @@ class SearchesController < ApplicationController
   end
 
   def show
-    FlickRaw.api_key = "756092d22ac3734e2746938aeb7b2488"
-    FlickRaw.shared_secret = "c799cf3e0a721081"
-    # FlickRaw.api_key = ENV['FLICKR_API_KEY']
-    # FlickRaw.shared_secret = ENV['FLICKR_SHARED_SECRET']
+    FlickRaw.api_key = ENV['FLICKR_API_KEY']
+    FlickRaw.shared_secret = ENV['FLICKR_SHARED_SECRET']
     search = Search.find(params[:id])
     photos = ''
     url = ''
     @photo = Photo.create
     if search.text != 'random'
-      photos = flickr.photos.search(:text=>search.text,:extras=>'tags')
+      photos = flickr.photos.search(:text=>search.text,:extras=>'tags',:accuracy=>3)
       filtered_photos = photos.reject {|photo| Photo.exists?(:url=>build_urls(photo))}
-      @photo.url = build_urls(filtered_photos.shuffle.first)
+      chosen_photo = filtered_photos.shuffle.first
+      @photo.url = build_urls(chosen_photo)
+      @photo.title = chosen_photo.title
+      @tags = chosen_photo.tags.split(' ')
       photos = filtered_photos
     else
       photos = format_photos
-      url = build_urls(photos)
-      @photo.url = url[0]
-    end
-    @tags = photos.first.tags.split(' ')
+      photos = flickr.photos.getRecent(:extras=>'tags,url_c')
+      filtered_photos = photos.reject {|photo| Photo.exists?(:url=>build_urls(photo))}
+      #url = build_urls(photos)
+      #@photo.url = url[0]
+      @photo.url = filtered_photos[0].url_c
+      @photo.title = photos.first.title
+      @tags = photos.first.tags.split(' ')
+  end
+    # @photo.title = photos.first.title
+    # @tags = photos.first.tags.split(' ')
     @photo.save
   end
 
@@ -70,7 +77,7 @@ class SearchesController < ApplicationController
   # Also shuffles the photos.`
   def format_photos
     photos = flickr.photos.getRecent(:extras=>'tags,url_c')
-    photos = photos.reject {|photo| photo.tags == '' || !photo['url_c'].present? || photo.tags.nil? || photo.tags.include?('uploaded')}
+    photos = photos.reject {|photo| photo.tags == '' || !photo['url_c'].present? || photo.tags.nil? || photo.tags.include?('uploaded') || photo.tags.include?('filter=none') || photo.tags.include?('filter=nofilter')}
     #photos.shuffle
   end
 

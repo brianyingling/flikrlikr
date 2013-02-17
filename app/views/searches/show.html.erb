@@ -1,9 +1,25 @@
-<div style='float:left;'>
-  <img src='<%= @photo.url %>' name='<%= @photo.id %>' />
+<!-- <div style='float:left;'> -->
+<div class='row'>
+  <div class='seven columns'>
+    <img src='<%= @photo.url %>' name='<%= @photo.id %>' style='border:5px solid #000' />
+  </div>
+  <div class="five columns">
+    <div><h2><%= @photo.title %></h2></div>
+    <div style="background-color:lightblue;">Tags</div>
+    <div style='padding:10px;'>
+    <% @tags.each do|tag| %>
+      <%= tag %>
+    <% end %>
+    </div>
+    <%= text_field_tag "comment", nil, :placeholder=>"Enter Your Comments here" %>
+    <div class='button-bar'>
+      <ul class='button-group'>
+        <li><%= button_to "Like", {:method=>'put', :status=>'like', :tags=>@tags, :photo_id=>@photo.id,}, { :class=>'button'} %></li>
+        <li><%= button_to "Dislike",{ :method=>'put', :status=>'dislike', :tags=>@tags, :photo_id=>@photo.id},{:class=>'button alert'} %></li>
+      </ul>
+  </div>
+  </div>
 </div>
-<% @tags.each do|tag| %>
-  <div><%= tag %></div>
-<% end %>
-</div>
-<%= button_to "Like", :method=>'put', :status=>'like', :tags=>@tags, :photo_id=>@photo.id %>
-<%= button_to "Dislike", :method=>'put', :status=>'dislike', :tags=>@tags, :photo_id=>@photo.id %>
+
+
+

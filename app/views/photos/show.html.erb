@@ -1,8 +1,13 @@
-<%= image_tag @photo.url %>
-<div style="float:left;">
-You viewed this on <%= @photo.updated_at %>
-You <%= @photo.status %> this photo.
-Tags: <% @photo.tags.each do |tag| %>
-  <%= tag.text %>
-  <% end %>
+
+<div class='row'>
+  <div class='eight columns'>
+    <%= image_tag @photo.url %>
+  </div>
+  <div class='four columns'>
+    <div>You viewed this on <%= @photo.updated_at %></div>
+    <div>You <%= @photo.status %> this photo.</div>
+    <div>Tags: <% @photo.tags.each do |tag| %>
+        <%= tag.text %>
+    <% end %></div>
+  </div>
 </div>

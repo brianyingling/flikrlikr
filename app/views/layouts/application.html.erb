@@ -8,25 +8,45 @@
 </head>
 <body>
   <div class='container'>
-  <nav>
-    <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <li>
-        <%= form_tag(new_search_path, :method=>'get') do %>
-        <%= label_tag(:q, "Search for:") %>
-        <%= text_field_tag(:q) %>
-        <%= submit_tag("Go!") %>
+    <div class='row'>
+      <div class="twelve columns">
+        <h1>FlickrLikr</h1>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='eleven columns'>
+       <%= form_tag(new_search_path, :method=>'get') do %>
+              <%= label_tag(:q, "Search for:") %>
+              <%= text_field_tag(:q) %>
+        </div>
+        <div class='one columns' style='margin-top:20px;'><%= submit_tag("Go!") %></div>
         <% end %>
-    </li>
-    <li><%= link_to "Or Search Randomly", new_search_path %></li>
-    <li><%= link_to "View Recent Photos", photos_path %></li>
-    <li><%= link_to "View Recent Tags", tags_path %></li>
 
-    </ul>
-  </nav>
+      </div>
+    <div class='row'>
+      <div class='twelve columns'>
+         <dl class="tabs pill">
+            <nav>
+              <ul>
+                <li><%= link_to "Home", root_path %></li>
+                <li><%= link_to "Or Search Randomly", new_search_path %></li>
+                <li><%= link_to "View Recent Photos", photos_path %></li>
+                <li><%= link_to "View Recent Tags", tags_path %></li>
+
+              </ul>
+            </nav>
+          </dl>
+        </div>
+      </div>
+
+        <%= yield %>
 
 
-<%= yield %>
   </div>
+  <script type="text/javascript">
+     $(window).load(function() {
+         $('#slider').orbit();
+     });
+  </script>
 </body>
 </html>

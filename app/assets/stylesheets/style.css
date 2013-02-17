@@ -1,9 +1,13 @@
 body {
+  background-color: blue;
+
 
 }
 .container {
   width: 940px;
   margin: 0 auto;
+  background-color: #fff;
+
 }
 
 nav ul li {
@@ -34,4 +38,10 @@ nav ul li form {
   width: 200px;
   height:200px;
   display: inline-block;
+}
+
+.slide {
+  width: 1000px;
+  height: 400px;
+  background-color: lightblue;
 }
