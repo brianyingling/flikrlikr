@@ -40,8 +40,10 @@ class SearchesController < ApplicationController
   end
 
   def show
-    FlickRaw.api_key = ENV['FLICKR_API_KEY']
-    FlickRaw.shared_secret = ENV['FLICKR_SHARED_SECRET']
+    FlickRaw.api_key = "756092d22ac3734e2746938aeb7b2488"
+    FlickRaw.shared_secret = "c799cf3e0a721081"
+    # FlickRaw.api_key = ENV['FLICKR_API_KEY']
+    # FlickRaw.shared_secret = ENV['FLICKR_SHARED_SECRET']
     search = Search.find(params[:id])
     photos = ''
     url = ''

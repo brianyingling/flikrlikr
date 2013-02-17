@@ -13,3 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require 'foundation/javascripts/foundation.min.js'
+//= require 'foundation/javascripts/modernizr.foundation.js'
+//= require 'foundation/javascripts/app.js'
