@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FlikrLikr</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class='container'>
+  <nav>
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li>
+        <%= form_tag(new_search_path, :method=>'get') do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Go!") %>
+        <% end %>
+    </li>
+    <li><%= link_to "Or Search Randomly", new_search_path %></li>
+    <li><%= link_to "View Recent Photos", photos_path %></li>
+    <li><%= link_to "View Recent Tags", tags_path %></li>
+
+    </ul>
+  </nav>
+
+
+<%= yield %>
+  </div>
+</body>
+</html>

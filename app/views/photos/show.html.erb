@@ -1,0 +1,8 @@
+<%= image_tag @photo.url %>
+<div style="float:left;">
+You viewed this on <%= @photo.updated_at %>
+You <%= @photo.status %> this photo.
+Tags: <% @photo.tags.each do |tag| %>
+  <%= tag.text %>
+  <% end %>
+</div>

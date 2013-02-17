@@ -1,0 +1,4 @@
+<% @photos.each do |photo| %>
+  <%= link_to(image_tag(photo.url, :class=>'indexed_photos', :style=>"border:3px solid #{photo.status == 'like' ? 'green' : 'red'}"),photo_path(photo.id))%>
+
+<% end %>

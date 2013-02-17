@@ -1,0 +1,8 @@
+<table>
+  <tr><td>Tag</td><td>Likes</td><td>Dislikes</td></tr>
+  <% @tags.each do |tag| %>
+  <tr style="background-color:<%= cycle('#ccc','#fff') %>">
+    <td><%= link_to tag.text, tag_path(tag.id) %></td><td><%= tag.num_likes %></td><td><%= tag.num_dislikes %></td>
+  </tr>
+<% end %>
+</table>

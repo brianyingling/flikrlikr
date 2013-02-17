@@ -1,0 +1,9 @@
+<div style='float:left;'>
+  <img src='<%= @photo.url %>' name='<%= @photo.id %>' />
+</div>
+<% @tags.each do|tag| %>
+  <div><%= tag %></div>
+<% end %>
+</div>
+<%= button_to "Like", :method=>'put', :status=>'like', :tags=>@tags, :photo_id=>@photo.id %>
+<%= button_to "Dislike", :method=>'put', :status=>'dislike', :tags=>@tags, :photo_id=>@photo.id %>
