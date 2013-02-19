@@ -4,4 +4,4 @@
 <div style='float:left;'>
 <img src='<%= @photo %>' /></div>
 <%= @tags %>
-<%= button_to "Like", search_path(@search.id), :name=>'like' %>
+<%= button_to "Like", search_path(@search.id), :name=>'like', :method=>'get' %>

@@ -11,13 +11,16 @@
       <%= tag %>
     <% end %>
     </div>
-    <%= text_field_tag "comment", nil, :placeholder=>"Enter Your Comments here" %>
-    <div class='button-bar'>
-      <ul class='button-group'>
-        <li><%= button_to "Like", {:method=>'put', :status=>'like', :tags=>@tags, :photo_id=>@photo.id,}, { :class=>'button'} %></li>
-        <li><%= button_to "Dislike",{ :method=>'put', :status=>'dislike', :tags=>@tags, :photo_id=>@photo.id},{:class=>'button alert'} %></li>
-      </ul>
-  </div>
+    <%= form_tag search_path, :comment=>'comment', :photo_id=>@photo.id %>
+      <%= hidden_field_tag 'photo_id', @photo.id %>
+      <%= hidden_field_tag 'tags', @tags %>
+      <%= text_field_tag "comment", nil, :placeholder=>"Enter Your Comments here" %>
+        <div class='button-bar'>
+        <ul class='button-group'>
+          <li><%= submit_tag "Like", {:method=>'put', :status=>'like', :tags=>@tags, :photo_id=>@photo.id, :class=>'button'} %></li>
+          <li><%= submit_tag "Dislike",{ :method=>'put', :status=>'dislike', :tags=>@tags, :photo_id=>@photo.id, :class=>'button alert'} %></li>
+        </ul>
+      </div>
   </div>
 </div>
 

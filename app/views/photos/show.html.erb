@@ -4,10 +4,16 @@
     <%= image_tag @photo.url %>
   </div>
   <div class='four columns'>
+    <h1><%= @photo.title %></h1>
     <div>You viewed this on <%= @photo.updated_at %></div>
     <div>You <%= @photo.status %> this photo.</div>
     <div>Tags: <% @photo.tags.each do |tag| %>
         <%= tag.text %>
     <% end %></div>
+    <% if @photo.comment? %>
+    <div style='border-bottom:1px solid black;margin-top:10px;'>Comments:</div>
+    <div><%= @photo.comment %></div>
+    <% end %>
+
   </div>
 </div>

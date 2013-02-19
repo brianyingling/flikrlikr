@@ -7,6 +7,8 @@ class PhotosController < ApplicationController
   def create
   end
   def update
+    binding.pry
+    redirect_to search_path(params[:id])
   end
   def edit
   end
