@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  def index
+   def index
   end
 
 
@@ -29,7 +29,7 @@ class SearchesController < ApplicationController
     tags = params[:tags].split(" ")
     tags.each do |tag|
       @tag = Tag.where(:text=>tag).first || Tag.create(:text=>tag)
-      @photo.status == 'Like' ? @tag.num_likes +=1 : @tag.num_dislikes += 1
+      @photo.status == 'like' ? @tag.num_likes +=1 : @tag.num_dislikes += 1
       @tag.save
       @photo.tags << @tag
     end
